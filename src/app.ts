@@ -4,8 +4,9 @@ import  mongoose  from "mongoose";
 import morgan from "morgan";
 import path from "path";
 import dotenv from 'dotenv'
-import config from './config';
+import router from "./router/router";
 dotenv.config();
+
 
 
 
@@ -29,5 +30,6 @@ app.use(cors);
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, "../public"), { maxAge: 31557600000 })
 );
+app.use(router)
 
 export default app;
