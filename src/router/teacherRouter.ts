@@ -1,10 +1,8 @@
 import { Router } from "express";
 const teacherRouter = Router()
 // const { getAllTeachers, getTeacherById, updateTeacher, deleteTeacherById } = require('../controllers/teacher.controller')
-// const router = require ('express').Router()
-// const { authUser } = require('../utils')
+// import { authUser } from '../utils'
 
-// router.get('/', authUser, getAllTeachers)
 // router.get('/:id', authUser, getTeacherById)
 // router.put('/:id', authUser, updateTeacher)
 // router.delete('/:id', authUser, deleteTeacherById)

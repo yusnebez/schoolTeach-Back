@@ -16,5 +16,3 @@ router.use('/tutor',tutorRouter)
 router.use('/content',contentRouter)
 
 export default router
-
-module.exports = router;

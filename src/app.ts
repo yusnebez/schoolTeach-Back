@@ -1,35 +1,41 @@
-import cors from "cors";
-import express from "express";
-import  mongoose  from "mongoose";
-import morgan from "morgan";
-import path from "path";
-import dotenv from 'dotenv'
-import router from "./router/router";
-dotenv.config();
+ 
+  import express from "express";
+  import router from "./router/router";
+  import cors from "cors";
+  //import  mongoose  from "mongoose";
+  import morgan from "morgan";
+  import path from "path";
+  import dotenv from 'dotenv'
+  
+  dotenv.config();
 
-
-
-
-mongoose.connect(`${process.env.MONGO_URL}`,{
-  dbName: process.env.MONGO_DB || "schoolDB",
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  }, err => { err ? {Error}: console.log("conected to MongoDB")})
+// mongoose.connect(`${process.env.MONGO_URL}`,{
+//   dbName: process.env.MONGO_DB || "schoolDB",
+//   useCreateIndex: true,
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   }, err => { err ? {Error}: console.log("conected to MongoDB")})
   
 
 
 // Create Express server
 const app = express();
 
-// Express configuration
-app.set("port", process.env.PORT || 3009);
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors);
-app.use(morgan('combined'));
-app.use(express.static(path.join(__dirname, "../public"), { maxAge: 31557600000 })
-);
-app.use(router)
+//  // Express configuration
+  app.use(express.json());
+  app.use(cors());
+  app.use(morgan('combined'));
+  app.use(express.static(path.join(__dirname, "public"),))
+  
+  app.use(router)
 
-export default app;
+
+ app.listen(process.env.PORT || 3008, () => {
+    console.log('server activo')
+    console.info('>'.repeat(40))
+    console.info('💻  Tecnoeduca Server Live')
+    console.info(`📡  PORT:${process.env.PORT}`)
+    console.info('>'.repeat(40) + '\n')
+    })
+ 
+  export default app;
