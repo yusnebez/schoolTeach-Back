@@ -20,6 +20,7 @@ import mongoose from 'mongoose'
     email:{
         type: String,
         require: true,
+        unique:[ true, 'Este email esta registrado'],
         trim:true
     },
     class:{
@@ -49,4 +50,4 @@ import mongoose from 'mongoose'
     timestamps:true
 })
 
-export default model('student',teacherSchema)
+export default model('teacher',teacherSchema)

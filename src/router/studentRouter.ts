@@ -6,7 +6,6 @@ import *as studentcontroller from "../controllers/studentcontroller"
 
 
 // studentRouter.post('/', authUser, createStudent)
-// studentRouter.post('/', authUser, createStudent)
 // studentRouter.get('/', authUser, getAllStudents)
    studentRouter.get('/buscar', studentcontroller.getbyEmail)
 // studentRouter.get('/:id', authUser, getStudentById)
