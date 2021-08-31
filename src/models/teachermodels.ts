@@ -1,5 +1,12 @@
-import { Schema, model, } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 import mongoose from 'mongoose'
+
+export interface IUser extends Document{
+    name: String,
+    lastname: String,
+    password: any,
+    email: String,
+}
 
  const teacherSchema = new Schema({
     name:{
@@ -50,4 +57,4 @@ import mongoose from 'mongoose'
     timestamps:true
 })
 
-export default model('teacher',teacherSchema)
+export default model<IUser>('teacher',teacherSchema)

@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 
 const classSchema = new Schema ({
     name:{
-        type:String,
+        // type:String,
         require: true,
         trim: true
     },

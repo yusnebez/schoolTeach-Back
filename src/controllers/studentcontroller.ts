@@ -1,23 +1,23 @@
-import studentModel from "../models/studentmodel"
+import studentSchema from "../models/studentmodel"
 import handleError from "../handlerError"
 import {Response,Request} from "express"
 
 export const createStudent = (req:Request, res:Response) => {
     
-    studentModel
+    studentSchema
     .create({
         name: req.body.name,
         email: req.body.email,
         lastname: req.body.lastname,
 
     })
-    .then(response => res.json(response))
-    .catch((err) => handleError(err, res))
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
  }
 
 
 export const getbyEmail = (req:Request, res:Response) => {
-    studentModel
+    studentSchema
     .findOne(req.query)
     .then((response: any) => res.json(response))
     .catch((err: any) => handleError(err, res))
@@ -26,14 +26,14 @@ export const getbyEmail = (req:Request, res:Response) => {
  }
 
 export const getAllStudents = (req:Request, res:Response) => {
-    studentModel
+    studentSchema
     .find()
     .then((response: any) => res.json(response))
     .catch((err: any) => handleError(err, res))
 }
 
 export const getStudentById = (req:Request, res:Response) => {
-    studentModel
+    studentSchema
     .findById(req.body.email)
     .then((response:any) => res.json(response))
     .catch((err: any) => handleError(err, res))
@@ -41,7 +41,7 @@ export const getStudentById = (req:Request, res:Response) => {
  }
 
 export const addSubject = (req:Request, res:Response) => {
-    studentModel
+    studentSchema
     .findById(req.params.id)
     .then((response:any) => {
         response.subjects.push({
@@ -55,7 +55,7 @@ export const addSubject = (req:Request, res:Response) => {
  }
 
 export const updateStudent = (req:Request, res:Response) => {
-    studentModel
+    studentSchema
     .findByIdAndUpdate(req.params.id)
     .then((response:any) => res.json(response))
     .catch((err:any) => handleError(err, res))
@@ -63,7 +63,7 @@ export const updateStudent = (req:Request, res:Response) => {
 }
 
 export const deleteStudentById = (req:Request, res:Response) => {
-    studentModel
+    studentSchema
     .findByIdAndRemove(req.params.id)
     .then((response:any) => res.json(response))
     .catch((err:any) => handleError(err, res))

@@ -1,42 +1,34 @@
-// const teacherModel = require("../models/teacher.model")
-// const { handleError } = require("../utils")
+import teacherSchema from "../models/teachermodels"
+import handleError from "../handlerError"
+import {Response,Request} from "express"
 
-// function getAllTeachers(req, res){
-//     teacherModel
-//     .find()
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
-// }
+export const getAllTeachers = (req:Request, res:Response) => {
+    teacherSchema
+    .find()
+    .then((response: any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+}
 
-// function getTeacherById(req, res){
-//     teacherModel
-//     .findById(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const getTeacherById = (req:Request, res:Response) => {
+    teacherSchema
+    .findById(req.params.id)
+    .then((response: any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
 
-// }
+}
 
-// function updateTeacher(req, res){
-//     teacherModel
-//     .findByIdAndUpdate(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const updateTeacher = (req:Request, res:Response) => {
+    teacherSchema
+    .findByIdAndUpdate(req.params.id)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
 
-// }
+}
 
-// function deleteTeacherById(req, res){
-//     teacherModel
-//     .findByIdAndRemove(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const deleteTeacherById = (req:Request, res:Response) => {
+    teacherSchema
+    .findByIdAndRemove(req.params.id)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
 
-// }
-
-// module.exports = {
-
-//     getAllTeachers,
-//     getTeacherById,
-//     updateTeacher,
-//     deleteTeacherById,
-
-// }
+}

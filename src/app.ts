@@ -2,19 +2,19 @@
   import express from "express";
   import router from "./router/router";
   import cors from "cors";
-  //import  mongoose  from "mongoose";
+  import  mongoose  from "mongoose";
   import morgan from "morgan";
   import path from "path";
   import dotenv from 'dotenv'
   
   dotenv.config();
 
-// mongoose.connect(`${process.env.MONGO_URL}`,{
-//   dbName: process.env.MONGO_DB || "schoolDB",
-//   useCreateIndex: true,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   }, err => { err ? {Error}: console.log("conected to MongoDB")})
+  mongoose.connect(`${process.env.MONGO_URL}`,{
+  dbName: process.env.MONGO_DB || "schoolDB",
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  }, (err: any) => { err ? {Error}: console.log("conected to MongoDB")})
   
 
 

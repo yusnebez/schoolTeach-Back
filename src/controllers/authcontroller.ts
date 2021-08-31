@@ -1,21 +1,10 @@
-// import { Application, Request, Response } from "express";
-
-
-
-// export const loadApiEndpoints = (app: Application): void => {
-//   app.get("/api", (req: Request, res: Response) => {
-//     return res.status(200).send(CoursesData);
-//   });
-// };
 import teacherSchema from "../models/teachermodels"
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 
-// const { ReplSet } = require("mongodb");
-
-function signup(req:Request, res:Response){
+export const signup = (req:Request, res:Response) => {
     const encryptedPasswd = bcrypt.hashSync(req.body.password, 10)
     teacherSchema.
     create({
@@ -25,32 +14,31 @@ function signup(req:Request, res:Response){
     })
     .then(teacher => {
         const data = {name: teacher.name, email: teacher.email}
-        const token = jwt.sign (data, process.env.SECRET)
-      
+        const token = jwt.sign (data, `${process.env.SECRET}`)
+        console.log(token, 'en login')
     
         res.status(200).json({ token: token, ...data})
   
     })
 
-    .catch((err: any)=> res.status(500).json(err))
+    .catch((err:any)=> res.status(500).json(err))
    
     
 
 }
 
-function login(req:Request, res:Response){
+export const login = (req:Request, res:Response) => {
     teacherSchema
      .findOne({
         email: req.body.email,
     })
-    .then((teacher: { password: string; email: string; name: string; }) => {
+    .then(teacher => {
         
         if (teacher){
         if (bcrypt.compareSync(req.body.password, teacher.password)){
             const data = { email: teacher.email, name: teacher.name}
-            const token = jwt.sign (data, process.env.SECRET)
-          
-            
+            const token = jwt.sign (data, `${process.env.SECRET}`)
+            console.log(token)
             
             res.status(200).json({ token: token, ...data})
             }

@@ -1,51 +1,44 @@
-// const subjectModel = require("../models/subject.model")
-// const { handleError } = require("../utils")
+import subjectSchema from "../models/subjectmodels"
+import handleError from "../handlerError"
+import {Response,Request} from "express"
 
-// function createSubject(req, res){
-//     subjectModel
-//     .create({
-//         name: req.body.name,
+export const createSubject = (req:Request, res:Response) => {
+    subjectSchema
+    .create({
+        name: req.body.name,
         
-//     })
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
-// }
+    })
+    .then((response: any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+}
 
-// function getAllSubjects(req, res){n
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
-// }
+export const getAllSubjects = (req:Request, res:Response) => {
+    subjectSchema
+    .find()
+    .then((response: any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+}
 
-// function getSubjectById(req, res){
-//     subjectModel
-//     .findById(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const getSubjectById = (req:Request, res:Response) => {
+    subjectSchema
+    .findById(req.params.id)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
 
-// }
+}
 
-// function updateSubject(req, res){
-//     subjectModel
-//     .findByIdAndUpdate(req.params.id, req.body)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const updateSubject = (req:Request, res:Response) => {
+    subjectSchema
+    .findByIdAndUpdate(req.params.id, req.body)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
 
-// }
+}
 
-// function deleteSubjectById(req, res){
-//     subjectModel
-//     .findByIdAndDelete(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const deleteSubjectById = (req:Request, res:Response) => {
+    subjectSchema
+    .findByIdAndDelete(req.params.id)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
 
-// }
-
-// module.exports = {
-
-//     createSubject,
-//     getAllSubjects,
-//     getSubjectById,
-//     updateSubject,
-//     deleteSubjectById,
-
-// }
+}

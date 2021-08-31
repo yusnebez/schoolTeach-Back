@@ -1,42 +1,71 @@
-// const teacherModel = require("../models/teacher.model")
-// const { handleError } = require("../utils")
+import tutorSchema from "../models/tutormodel"
+import handleError from "../handlerError"
+import {Response,Request} from "express"
 
-// function getAllTeachers(req, res){
-//     teacherModel
-//     .find()
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
-// }
+export const createTutor = (req:Request, res:Response) => {
+    
+    tutorSchema
+    .create({
+        name: req.body.name,
+        email: req.body.email,
+        lastname: req.body.lastname,
 
-// function getTeacherById(req, res){
-//     teacherModel
-//     .findById(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+    })
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+ }
 
-// }
 
-// function updateTeacher(req, res){
-//     teacherModel
-//     .findByIdAndUpdate(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const getbyEmail = (req:Request, res:Response) => {
+    tutorSchema
+    .findOne(req.query)
+    .then((response: any) => res.json(response))
+    .catch((err: any) => handleError(err, res))
+   
 
-// }
+ }
 
-// function deleteTeacherById(req, res){
-//     teacherModel
-//     .findByIdAndRemove(req.params.id)
-//     .then(response => res.json(response))
-//     .catch((err) => handleError(err, res))
+export const getAllTutor = (req:Request, res:Response) => {
+    tutorSchema
+    .find()
+    .then((response: any) => res.json(response))
+    .catch((err: any) => handleError(err, res))
+}
 
-// }
+export const getTutorById = (req:Request, res:Response) => {
+    tutorSchema
+    .findById(req.body.email)
+    .then((response:any) => res.json(response))
+    .catch((err: any) => handleError(err, res))
 
-// module.exports = {
+ }
 
-//     getAllTeachers,
-//     getTeacherById,
-//     updateTeacher,
-//     deleteTeacherById,
+export const addSubject = (req:Request, res:Response) => {
+    tutorSchema
+    .findById(req.params.id)
+    .then((response:any) => {
+        response.subjects.push({
+            info: req.params.subjectId
+        })
+        response.save()
 
-// }
+    })
+    .catch((err: any) => handleError(err, res))
+
+ }
+
+export const updateTutor = (req:Request, res:Response) => {
+    tutorSchema
+    .findByIdAndUpdate(req.params.id)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+
+}
+
+export const deleteTutorById = (req:Request, res:Response) => {
+    tutorSchema
+    .findByIdAndRemove(req.params.id)
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+
+ }

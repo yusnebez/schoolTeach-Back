@@ -25,11 +25,11 @@ const classSchema = new Schema ({
     },
     tutor:{
         types:mongoose.Schema.Types.ObjectId,
-        ref: "tutor"
+        // ref: "tutor"
     },
     content:{
         types:mongoose.Schema.Types.ObjectId,
-        ref: "content"
+        // ref: "content"
     }
 },{
     versionKey: false,
