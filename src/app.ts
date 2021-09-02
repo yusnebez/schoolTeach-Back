@@ -1,21 +1,20 @@
- 
+  import dotenv from 'dotenv'
+  dotenv.config();
+  import  mongoose  from "mongoose";
   import express from "express";
   import router from "./router/router";
   import cors from "cors";
-  import  mongoose  from "mongoose";
   import morgan from "morgan";
   import path from "path";
-  import dotenv from 'dotenv'
   
-  dotenv.config();
-
-  mongoose.connect(`${process.env.MONGO_URL}`,{
-  dbName: process.env.MONGO_DB || "schoolDB",
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  }, (err: any) => { err ? {Error}: console.log("conected to MongoDB")})
   
+  mongoose 
+  .connect(`${process.env.MONGO_URL || "mongodb+srv://yusnebez:changes66@cluster0.mymkx.mongodb.net/schoolteachretryWrites=true&w=majority"}`,{
+         useNewUrlParser: true,
+         useUnifiedTopology: true,
+         useCreateIndex: true,   })   
+  .then(() => console.log("Database connected!"))
+  .catch(err => console.log(err));
 
 
 // Create Express server
@@ -30,11 +29,11 @@ const app = express();
   app.use(router)
 
 
- app.listen(process.env.PORT || 3008, () => {
+ app.listen(process.env.PORT || 3009, () => {
     console.log('server activo')
     console.info('>'.repeat(40))
     console.info('💻  Tecnoeduca Server Live')
-    console.info(`📡  PORT:${process.env.PORT}`)
+    console.info('📡  PORT:' , process.env.PORT)
     console.info('>'.repeat(40) + '\n')
     })
  
