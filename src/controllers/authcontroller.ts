@@ -27,18 +27,17 @@ export const signup = async (req:Request, res:Response) => {
 
 export const login = (req:Request, res:Response) => {
     
-    
+    console.log('estoy aqui')
+    console.log(req.body.password)
 
-     TeacherModel.findOne({
+  const emailfind = TeacherModel.findOne({
         email: req.body.email,
-
-    })
-
-    .then(Teacher => {
-        
-        if (Teacher){
-        if (bcrypt.compareSync(req.body.password, Teacher.password)){
-            const data = { email: Teacher.email, name: Teacher.name}
+        }) 
+     
+    .then(emailfind => {
+     if (emailfind){
+     if (bcrypt.compareSync(req.body.password, emailfind.password)){
+            const data = { email: emailfind.email, name: emailfind.name}
             const token = jwt.sign (data, `${process.env.SECRET}`)
             console.log(token)
             

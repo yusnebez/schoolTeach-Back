@@ -1,5 +1,5 @@
 const api = axios.create({
-    baseURL:"https://localhost:3015",
+    baseURL:"http://localhost:3012",
     timeout: 2000
 })
 
@@ -27,6 +27,6 @@ document.getElementById('login').addEventListener("click", function(){
 }) 
 
 function home(){
-    window.location.href = "../public/subject.js"
+    window.location.href = "../public/subject.html"
 
 }

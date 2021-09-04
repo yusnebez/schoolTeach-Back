@@ -3,6 +3,8 @@ import handleError from "../handlerError"
 import {Response,Request} from "express"
 
 export const createSubject = (req:Request, res:Response) => {
+    console.log('estoy en asignaturas')
+
     subjectSchema
     .create({
         name: req.body.name,
