@@ -1,10 +1,10 @@
-import tutorSchema from "../models/tutormodel"
+import {TutorModel} from "../models/tutormodel"
 import handleError from "../handlerError"
 import {Response,Request} from "express"
 
 export const createTutor = (req:Request, res:Response) => {
     
-    tutorSchema
+    TutorModel
     .create({
         name: req.body.name,
         email: req.body.email,
@@ -17,7 +17,7 @@ export const createTutor = (req:Request, res:Response) => {
 
 
 export const getbyEmail = (req:Request, res:Response) => {
-    tutorSchema
+    TutorModel
     .findOne(req.query)
     .then((response: any) => res.json(response))
     .catch((err: any) => handleError(err, res))
@@ -26,14 +26,14 @@ export const getbyEmail = (req:Request, res:Response) => {
  }
 
 export const getAllTutor = (req:Request, res:Response) => {
-    tutorSchema
+    TutorModel
     .find()
     .then((response: any) => res.json(response))
     .catch((err: any) => handleError(err, res))
 }
 
 export const getTutorById = (req:Request, res:Response) => {
-    tutorSchema
+    TutorModel
     .findById(req.body.email)
     .then((response:any) => res.json(response))
     .catch((err: any) => handleError(err, res))
@@ -41,7 +41,7 @@ export const getTutorById = (req:Request, res:Response) => {
  }
 
 export const addSubject = (req:Request, res:Response) => {
-    tutorSchema
+    TutorModel
     .findById(req.params.id)
     .then((response:any) => {
         response.subjects.push({
@@ -55,7 +55,7 @@ export const addSubject = (req:Request, res:Response) => {
  }
 
 export const updateTutor = (req:Request, res:Response) => {
-    tutorSchema
+    TutorModel
     .findByIdAndUpdate(req.params.id)
     .then((response:any) => res.json(response))
     .catch((err:any) => handleError(err, res))
@@ -63,7 +63,7 @@ export const updateTutor = (req:Request, res:Response) => {
 }
 
 export const deleteTutorById = (req:Request, res:Response) => {
-    tutorSchema
+    TutorModel
     .findByIdAndRemove(req.params.id)
     .then((response:any) => res.json(response))
     .catch((err:any) => handleError(err, res))

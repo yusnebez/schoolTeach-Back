@@ -1,7 +1,8 @@
 import { Schema, model, } from "mongoose";
 import mongoose from 'mongoose'
+import { Tutor } from '../interface/interface'
 
- const tutorSchema = new Schema({
+const schema = new Schema<Tutor>({
     name:{
         type: String,
         require: true,
@@ -51,4 +52,4 @@ import mongoose from 'mongoose'
     timestamps:true
 })
 
-export default model('tutor',tutorSchema)
+export const TutorModel = model<Tutor>('Tutor',schema)

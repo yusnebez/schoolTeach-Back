@@ -5,11 +5,15 @@ import subjectRouter from './subjectRouter'
 import tutorRouter from './tutorRouter'
 // import contentRouter from './content'
 import classRouter from './classRouter'
-import authRouter from './authrouter'
+import authteacherrouter from './authteacherrouter'
+import authtutorrouter from './authtutorrouter'
+import authstudentrouter from '../router/authstudentrouter'
 
 const router = Router()
 
-router.use('/', authRouter)
+router.use('/students',authstudentrouter)
+router.use('/tutores',authtutorrouter)
+router.use('/', authteacherrouter)
 router.use('/class', classRouter)
 router.use('/teacher',teacherRouter)
 router.use('/student',studentRouter)

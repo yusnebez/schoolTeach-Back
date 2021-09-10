@@ -1,10 +1,10 @@
-import studentSchema from "../models/studentmodel"
+import { StudentModel } from "../models/studentmodel"
 import handleError from "../handlerError"
 import {Response,Request} from "express"
 
 export const createStudent = (req:Request, res:Response) => {
     
-    studentSchema
+    StudentModel
     .create({
         name: req.body.name,
         email: req.body.email,
@@ -17,7 +17,7 @@ export const createStudent = (req:Request, res:Response) => {
 
 
 export const getbyEmail = (req:Request, res:Response) => {
-    studentSchema
+    StudentModel
     .findOne(req.query)
     .then((response: any) => res.json(response))
     .catch((err: any) => handleError(err, res))
@@ -26,14 +26,14 @@ export const getbyEmail = (req:Request, res:Response) => {
  }
 
 export const getAllStudents = (req:Request, res:Response) => {
-    studentSchema
+    StudentModel
     .find()
     .then((response: any) => res.json(response))
     .catch((err: any) => handleError(err, res))
 }
 
 export const getStudentById = (req:Request, res:Response) => {
-    studentSchema
+    StudentModel
     .findById(req.body.email)
     .then((response:any) => res.json(response))
     .catch((err: any) => handleError(err, res))
@@ -41,7 +41,7 @@ export const getStudentById = (req:Request, res:Response) => {
  }
 
 export const addSubject = (req:Request, res:Response) => {
-    studentSchema
+    StudentModel
     .findById(req.params.id)
     .then((response:any) => {
         response.subjects.push({
@@ -55,7 +55,7 @@ export const addSubject = (req:Request, res:Response) => {
  }
 
 export const updateStudent = (req:Request, res:Response) => {
-    studentSchema
+    StudentModel
     .findByIdAndUpdate(req.params.id)
     .then((response:any) => res.json(response))
     .catch((err:any) => handleError(err, res))
@@ -63,7 +63,7 @@ export const updateStudent = (req:Request, res:Response) => {
 }
 
 export const deleteStudentById = (req:Request, res:Response) => {
-    studentSchema
+    StudentModel
     .findByIdAndRemove(req.params.id)
     .then((response:any) => res.json(response))
     .catch((err:any) => handleError(err, res))
