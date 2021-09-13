@@ -32,3 +32,15 @@ export const deleteTeacherById = (req:Request, res:Response) => {
     .catch((err:any) => handleError(err, res))
 
 }
+
+export const updateTeacherStudentid = (req:Request, res:Response) => {
+    console.log(req.body.id),
+    TeacherModel
+    .updateOne({ _id: req.body.id },{
+        $set:{
+            student: req.body.student,
+        }})
+    .then((response:any) => res.json(response))
+    .catch((err:any) => handleError(err, res))
+
+}

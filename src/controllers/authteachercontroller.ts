@@ -37,7 +37,7 @@ export const login = (req:Request, res:Response) => {
     .then(emailfind => {
      if (emailfind){
      if (bcrypt.compareSync(req.body.password, emailfind.password)){
-            const data = { email: emailfind.email, name: emailfind.name}
+            const data = { email: emailfind.email, name: emailfind.name,}
             const token = jwt.sign (data, `${process.env.SECRET}`)
             console.log(token)
             

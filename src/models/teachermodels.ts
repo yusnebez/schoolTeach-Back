@@ -30,8 +30,9 @@ import { Teacher } from '../interface/interface'
         trim:true
     },
     student:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "student"
+        
+        type: [mongoose.Schema.Types.ObjectId],
+            ref: "student" 
 
     },
     subject:{

@@ -29,7 +29,7 @@ const app = express();
   app.use(router)
 
 
- app.listen(process.env.PORT || 301, () => {
+ app.listen(process.env.PORT || 3007, () => {
     console.log('server activo')
     console.info('>'.repeat(40))
     console.info('💻  Tecnoeduca Server Live')
